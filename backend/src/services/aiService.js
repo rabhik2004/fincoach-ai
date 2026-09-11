@@ -25,7 +25,7 @@ const callOllama = async (systemPrompt, userMessage, conversationHistory = []) =
 // ── OpenAI ─────────────────────────────────────────────────────────────────
 const callOpenAI = async (systemPrompt, userMessage, conversationHistory = []) => {
   const OpenAI = require('openai');
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1' });
   const messages = [
     { role: 'system', content: systemPrompt },
     ...conversationHistory,
