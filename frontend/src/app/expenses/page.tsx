@@ -82,7 +82,7 @@ export default function ExpensesPage() {
     }
   };
 
-  const handleSaved = (expense: Expense) => {
+  const handleSaved = (expense: any) => {
     setExpenses((prev) => {
       const idx = prev.findIndex((e) => e._id === expense._id);
       if (idx >= 0) {
