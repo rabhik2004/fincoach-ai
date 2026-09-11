@@ -32,16 +32,18 @@ app.use(cors({
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
+  windowMs: 15 * 60 * 1000,
   max: 100,
   message: { error: 'Too many requests, please try again later.' },
+  validate: { xForwardedForHeader: false },
 });
 app.use('/api/', limiter);
 
 const aiLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 min
+  windowMs: 60 * 1000,
   max: 10,
   message: { error: 'AI rate limit reached, please wait a moment.' },
+  validate: { xForwardedForHeader: false },
 });
 app.use('/api/ai/', aiLimiter);
 
